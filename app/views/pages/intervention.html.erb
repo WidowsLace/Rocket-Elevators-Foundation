@@ -1,0 +1,350 @@
+<head>
+	<title>Rocket Elevators |   Intervention !</title>
+</head>
+
+		<!-- wrapper -->
+		<div id="wrapper">
+
+
+
+			<!-- 
+				AVAILABLE HEADER CLASSES
+				Default nav height: 96px
+				.header-md 		= 70px nav height
+				.header-sm 		= 60px nav height
+				.b-0 		= remove bottom border (only with transparent use)
+				.sticky			= sticky header
+				.static			= static header
+				.dark			= dark header
+				.bottom			= header on bottom
+				
+				shadow-before-1 = shadow 1 header top
+				shadow-after-1 	= shadow 1 header bottom
+				shadow-before-2 = shadow 2 header top
+				shadow-after-2 	= shadow 2 header bottom
+				shadow-before-3 = shadow 3 header top
+				shadow-after-3 	= shadow 3 header bottom
+				.clearfix		= required for mobile menu, do not remove!
+			-->
+			<div id="header" class="navbar-toggleable-md clearfix transparent sticky dark disable-uppercase">
+
+				<!-- TOP NAV -->
+				<header id="topNav">
+					<div class="container">
+
+						<!-- Mobile Menu Button -->
+						<button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Logo -->
+						<a class="logo float-left scrollTo" href="/index">
+							<%= image_tag 'R2.png', alt:"R2" %>
+						</a>
+
+						<!-- 
+							Top Nav 
+							
+							AVAILABLE CLASSES:
+							submenu-dark = dark sub menu
+						-->
+						<div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+							<nav class="nav-main">
+
+								<!-- 
+									.nav-onepage
+									Required for onepage navigation links
+									
+									Add .external for an external link!
+								-->
+								<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
+									<li class="active"><!-- HOME -->
+										<a href="index.html" id="home-nav">
+											HOME
+										</a>
+									</li>
+									<li><!-- SERVICES -->
+										<a href="index.html#services" id="services-nav">
+											SERVICES
+										</a>
+									</li>
+									<li><!-- WORK -->
+										<a href="index.html#portfolio" id="portfolio-nav">
+											PORTFOLIO
+										</a>
+									</li>
+									<li><!-- NEWS -->
+										<a href="index.html#news" id="news-nav">
+											NEWS
+										</a>
+									</li>
+									<li><!-- CLIENTS -->
+										<a href="index.html#clients" id="clients-nav">
+											CLIENTS
+										</a>
+									</li>
+									<li><!-- CONTACT -->
+										<a href="index.html#contact" id="contact-nav">
+											CONTACT
+										</a>
+									</li>
+									<li><!-- LOGIN -->
+										<a href=<%= new_user_session_path %> id="contact-nav">
+											LOGIN
+										</a>
+									</li>
+                                    <% if user_signed_in? %>
+										<li><!-- BACK OFFICE -->
+											<a href="/intervention" id="contact-nav">
+												Interventions
+											</a>
+										</li>
+									<% end %>
+									<% if user_signed_in? %>
+										<li><!-- BACK OFFICE -->
+											<a href="/admin" id="contact-nav">
+												Back Office
+											</a>
+										</li>
+									<% end %>
+								</ul>
+
+							</nav>
+						</div>
+
+					</div>
+				</header>
+				<!-- /Top Nav -->
+
+			</div>
+
+
+
+			<!-- REVOLUTION SLIDER -->
+			<section id="slider" class="fullwidthbanner-container roundedcorners">
+				<!--
+					Navigation Styles:
+					
+						data-navigationStyle="" theme default navigation
+						
+						data-navigationStyle="preview1"
+						data-navigationStyle="preview2"
+						data-navigationStyle="preview3"
+						data-navigationStyle="preview4"
+						
+					Bottom Shadows
+						data-shadow="1"
+						data-shadow="2"
+						data-shadow="3"
+						
+					Slider Height (do not use on fullscreen mode)
+						data-height="300"
+						data-height="350"
+						data-height="400"
+						data-height="450"
+						data-height="500"
+						data-height="550"
+						data-height="600"
+						data-height="650"
+						data-height="700"
+						data-height="750"
+						data-height="800"
+				-->
+				<div class="fullscreenbanner" data-navigationStyle="preview4">
+					<ul class="hide">
+
+						<!-- SLIDE  -->
+						<%# <li data-transition="random" data-slotamount="1" data-masterspeed="1000" data-saveperformance="off" data-title="Slide title 1" > %>
+						<li data-transition="" data-slotamount="7" data-masterspeed="600"  data-saveperformance="off"  data-title="Home">
+							
+							<%= image_tag("AdobeStock_3294993.jpeg", :alt=>"", :data=>"cover", :data=>"center bottom", :data=>"no-repeat" )%>
+							<div class="overlay dark-4"><!-- dark overlay [1 to 9 opacity] --></div>
+
+							<div class="tp-caption customin ltl tp-resizeme large_bold_white"
+								data-x="center"
+								data-y="230"
+								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+								data-speed="800"
+								data-start="1200"
+								data-easing="easeOutQuad"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.01"
+								data-endelementdelay="0.1"
+								data-endspeed="1000"
+								data-endeasing="Power4.easeIn" style="z-index: 10;">
+								Request An Intervention
+							</div>
+
+							<div class="tp-caption customin ltl tp-resizeme small_light_white"
+								data-x="center"
+								data-y="330"
+								data-customin="x:0;y:150;z:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+								data-speed="800"
+								data-start="1400"
+								data-easing="easeOutQuad"
+								data-splitin="none"
+								data-splitout="none"
+								data-elementdelay="0.01"
+								data-endelementdelay="0.1"
+								data-endspeed="1000"
+								data-endeasing="Power4.easeIn" style="z-index: 10; width: 750px; max-width: 750px; white-space: normal; text-align:center; font-size:20px;">
+								<span class="font-lato">
+									Please fill the following form below out to enter a new request for intervention, thank you!
+								</span>
+							</div>
+
+						</li>
+
+						<!-- SLIDE  -->
+
+					</ul>
+				</div>
+			</section>
+			<!-- /REVOLUTION SLIDER -->
+
+
+
+			<section class="b-0">
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-lg-7 order-lg-2">
+							
+							<div class="heading-title mt-0">
+								<h2 class="fs-20 fw-400">Intervention Request Form</h2>
+							</div>
+
+                            <%= form_with do |form| %>
+    
+ 										<%# <div class="field" style="display: none;">
+                							<%= form.label :Author %>
+                							<%# <%= form.text_field :author, value:current_user.employee %> 
+            							<%# </div> %>
+                                        <div class="form-group" id="Customer">
+                                            <%= form.label :Customer %>
+                                            <%= form.select(:customer, Customer.all.collect {|customer| [customer.company_name, customer.id ]}.sort_by(&:first), {prompt: "Customer"}, {class: 'form-control'}) %>
+                                        </div>
+                                         <div class="form-group" id="building">
+                                            <%= form.label :Building %>
+                                            <%= form.select(:building, Building.all.collect {|building| [building.id, building.customer_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
+                                        </div>
+
+                                        <div class="form-group" id="battery">
+                                            <%= form.label :Battery %>
+                                            <%= form.select(:battery, Battery.all.collect {|battery| [battery.id, battery.building_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
+                                        </div>
+
+                                        <div class="form-group" id="column">
+                                            <%= form.label :Column %>
+                                            <%= form.select(:column, Column.all.collect {|column| [column.id, column.battery_id ]}, {prompt: "none"}, {class: 'form-control'}) %>
+                                        </div>
+
+                                        <div class="form-group" id="elevator">
+                                            <%= form.label :Elevator %>
+                                            <%= form.select(:elevator, Elevator.all.collect {|elevator| [elevator.id, elevator.serial_number ]}, {prompt: "Elevator"}, {class: 'form-control'}) %>
+                                        </div>
+
+                                        <div class="form-group" id="employee">
+                                            <%= form.label :Employee %>
+                                            <%= form.select(:employee, Employee.all.collect {|employee| [employee.first_name + " " + employee.last_name, employee.id ]}, {prompt: "none"}, {class: 'form-control'}) %>
+                                        </div>
+
+                                        <div class="field" style="display: none;">
+                                            <%= form.label :created_at %>
+                                            <%= form.text_field :created_at, value:nil %>
+                                        </div>
+
+                                        <div class="field" style="display: none;">
+                                            <%= form.label :updated_at %>
+                                            <%= form.text_field :updated_at, value:nil %>
+                                        </div>
+
+                                        <div class="field" style="display: none;">
+                                            <%= form.label :result %>
+                                            <%= form.text_field :result, value:"Incomplete" %>
+                                        </div>
+
+                                        <div class="field">
+                                            <%= form.label(:report, "Description") %>
+                                            <%= form.text_area :report, class:'form-control', rows:'6', :required => true %>
+                                        </div>
+
+                                        <div class="field" style="display: none;">
+                                            <%= form.label :status %>
+                                            <%= form.text_field :status, value:"Pending"%>
+                                        </div>
+
+                                        <div class="actions">
+                                            <button type="Submit" value="Submit" class="btn btn-primary" ><i class="fa fa-check"></i> SEND MESSAGE</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </section>
+                            <% end %>
+
+								<!-- Alert Success -->
+								<div id="alert_success" class="alert alert-success mb-30">
+									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+									<strong>Thank You!</strong> Your request successfully sent!
+								</div><!-- /Alert Success -->
+
+
+								<!-- Alert Failed -->
+								<div id="alert_failed" class="alert alert-danger mb-30">
+									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+									<strong>[SMTP] Error!</strong> Internal server error!
+								</div><!-- /Alert Failed -->
+
+
+								<!-- Alert Mandatory -->
+								<div id="alert_mandatory" class="alert alert-danger mb-30">
+									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+									<strong>Sorry!</strong> You need to complete all mandatory (*) fields!
+								</div><!-- /Alert Mandatory -->
+
+
+<%# 
+								
+		<script src="<%= asset_path 'intervention' %>
+
+					<%# var subjectObject = {
+			"Front-end": {
+				"HTML": ["Links", "Images", "Tables", "Lists"],
+				"CSS": ["Borders", "Margins", "Backgrounds", "Float"],
+				"JavaScript": ["Variables", "Operators", "Functions", "Conditions"]
+			},
+
+			}
+			window.onload = function() {
+			var customerSel = document.getElementById("customer");
+			var buildingSel = document.getElementById("building");
+			var batterySel = document.getElementById("battery");
+			var columnSel = document.getElementById("column");
+			var elevatorSel = document.getElementById("elevator");
+			for (var x in subjectObject) {
+				customerSel.options[customerSel.options.length] = new Option(x, x);
+			}
+			customerSel.onchange = function() {
+				//empty Chapters- and Topics- dropdowns
+				batterySel.length = 1;
+				buildingSel.length = 1;
+				//display correct values
+				for (var y in subjectObject[this.value]) {
+				buildingSel.options[buildingSel.options.length] = new Option(y, y);
+				}
+			}
+			buildingSel.onchange = function() {
+				//empty Chapters dropdown
+				batterySel.length = 1;
+				//display correct values
+				var z = subjectObject[customerSel.value][this.value];
+				for (var i = 0; i < z.length; i++) {
+				batterySel.options[batterySel.options.length] = new Option(z[i], z[i]);
+				}
+			}
+			
+			} %>
+			<%# </script> %> 

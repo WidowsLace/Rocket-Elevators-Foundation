@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: 
+  start_date: 2022-04-04 14:48:14
+  time_of_intervention: 2022-04-04 14:48:14
+  result: MyString
+  report: MyString
+  status: MyString
+
+two:
+  author: 
+  start_date: 2022-04-04 14:48:14
+  time_of_intervention: 2022-04-04 14:48:14
+  result: MyString
+  report: MyString
+  status: MyString
