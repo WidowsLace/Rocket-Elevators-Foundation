@@ -18,10 +18,13 @@ Rails.application.routes.draw do
 
   post '/lead', to: 'leads#create'
 
-  get 'get_buildings_by_customer/:customer_id', to: 'buildings#get_buildings_by_customer'
-  get 'get_batteries_by_building/:building_id', to: 'batteries#get_batteries_by_building'
-  get 'get_columns_by_battery/:battery_id', to: 'columns#get_columns_by_battery'
-  get 'get_elevators_by_column/:column_id', to: 'elevators#get_elevators_by_column'
+  get 'get_buildings_by_customer/:customer_id', to: 'interventions#get_buildings_by_customer'
+
+  get 'get_batteries_by_building/:building_id', to: 'interventions#get_batteries_by_building'
+
+  get 'get_columns_by_battery/:battery_id', to: 'interventions#get_columns_by_battery'
+
+  get 'get_elevators_by_column/:column_id', to: 'interventions#get_elevators_by_column'
 
   #route to home page, commercial,residential, and quote
   root to: 'pages#index'

@@ -4,17 +4,50 @@ require 'json'
 class InterventionsController < InheritedResources::Base
   skip_before_action :verify_authenticity_token
 
+  def get_buildings_by_customer
+    @buildings = Building.where("customer_id = ?", params[:customer_id])
+    respond_to do |format|
+      format.json { render :json => @buildings }
+    end
+  end 
+  
+  def get_batteries_by_building
+    @battery = Battery.where("building_id = ?", params[:building_id])
+    respond_to do |format|
+      format.json { render :json => @battery }
+    end
+  end 
+  
+  def get_columns_by_battery
+    @column = Column.where("battery_id = ?", params[:battery_id])
+    respond_to do |format|
+      format.json { render :json => @column }
+    end
+  end 
+  
+  def get_elevators_by_column
+    @elevator = Elevator.where("column_id = ?", params[:column_id])
+    respond_to do |format|
+      format.json { render :json => @elevator }
+    end
+  end 
+  
+
+
     def create
-       
       @intervention = Intervention.create!(
-          user_id: params[:user_id],
-          customer_id: params[:customer],
-          building_id: params[:building_id],
-          battery_id: params[:battery_id],
-          column_id: params[:column_id],
-          elevator_id: params[:elevator_id],
-          employee_id: params[:employee_id],
+          author: Employee.find(current_user.id),
+          customer: Customer.find(params[:customer]),
+
+                    
+          building: Building.find(params[:building]),
+          battery: Battery.find(params[:battery]),
+          column: Column.find(params[:column]),
+          elevator: Elevator.find(params[:elevator]),
+          employee: Employee.find(params[:employee]),
           # description: params[:description],
+          # startdate: params[:start_date],
+          # enddate: params[:end_date],
           # time_of_intervention: params[:time_of_intervention],
           result: params[:result],
           report: params[:report],
@@ -27,51 +60,16 @@ class InterventionsController < InheritedResources::Base
         api_key = ENV['FRESHDESK_API']
         
 
-          if @intervention.user_id == nil
-          @intervention.user_id = "n/a"
-          end
-          if @intervention.customer_id == nil
-          # @intervention.customer = "n/a"
-          end
-          if @intervention.building_id == nil
-          # @intervention.building = "n/a"
-          end
-          if @intervention.battery_id == nil
-          # @intervention.battery = "n/a"
-          end
-          if @intervention.column_id == nil
-          # @intervention.column = "n/a"
-          end
-          if @intervention.elevator_id == nil
-          # @intervention.elevator = "n/a"
-          end
-          if @intervention.employee_id == nil
-          # @intervention.employee = "n/a"
-          end
-          # if @intervention.description == nil
-          # @intervention.description = "n/a"
-          # end
-          # if @intervention.time_of_intervention == nil
-          # @intervention.time_of_intervention = "n/a"
-          # end
-          if @intervention.result == nil
-          # @intervention.result = "n/a"
-          end
-          if @intervention.report == nil
-          # @intervention.report = "n/a"
-          end
-          if @intervention.status == nil
-          # @intervention.status = "n/a"
-          end
+
+
 
     
           json_payload = {
               status: 2,  
               priority: 1, 
-              "name": @intervention.user_id.to_s,
               "email": "widowslace@rocketelevators.freshdesk.com", 
               "description": 
-                "The contact " + @intervention.user_id.to_s + "and has amount of buildings " + @intervention.building_id.to_s,
+              "A new intervention has been submitted by employee " + @intervention.author.first_name,
               "type": "Incident",
               "subject": @intervention.report,
           }.to_json
@@ -91,7 +89,7 @@ class InterventionsController < InheritedResources::Base
         puts "X-Request-Id : #{exception.response.headers[:x_request_id]}"
         puts "Response Code: #{exception.response.code} Response Body: #{exception.response.body} "
       end
+
       redirect_to('/intervention')
     end
-  end
-
+end

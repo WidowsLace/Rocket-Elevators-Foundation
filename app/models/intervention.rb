@@ -1,6 +1,6 @@
 class Intervention < ApplicationRecord
     belongs_to :customer
-    belongs_to :employee
+    belongs_to :employee, optional: true
     belongs_to :author, class_name: "Employee"
     belongs_to :building
     belongs_to :battery

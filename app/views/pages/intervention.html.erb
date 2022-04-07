@@ -217,13 +217,16 @@
 							</div>
 
                             <%= form_with do |form| %>
-    
- 										<%# <div class="field" style="display: none;">
-                							<%= form.label :Author %>
-                							<%# <%= form.text_field :author, value:current_user.employee %> 
-            							<%# </div> %>
+
  								<div class="row">
                                 	<div class="col-md-4">
+                                        <%= form.label :employee %>
+                                        <%= form.select(:employee, Employee.all.collect {|c| [c.first_name, c.id]}.sort_by(&:first), {prompt: "-Select Employee-"}, {class: 'form-control'}) %>
+                                    </div>
+                                </div>
+ 								<div class="row">
+                                	<div class="col-md-4">
+									
                                         <%= form.label :customer %>
                                         <%= form.select(:customer, Customer.all.collect {|customer| [customer.company_name, customer.id]}.sort_by(&:first), {prompt: "-Select Customer-"}, {class: 'form-control'}) %>
                                     </div>
@@ -231,25 +234,25 @@
  								<div class="building-class">
                                 <div class="col-md-4">
                                         <%= form.label :building %>
-                                        <%= form.select(:building, Building.all.collect {|t| [t.id, t.customer_id ]}, {prompt: "id"},  {class: 'form-control'}) %>
+                                        <%= form.select(:building, Building.all.collect {|t| [t.id, t.customer ]}, {prompt: "id"},  {class: 'form-control'}) %>
                                     </div>
                                 </div>
 								<div class="battery-class">
                                 	<div class="col-md-4">
                                         <%= form.label :battery %>
-                                        <%= form.select(:battery, Battery.all.collect {|a| [a.id, a.building_id]}, {prompt: "-Select Battery-"}, {class: 'form-control'}) %>
+                                        <%= form.select(:battery, Battery.all.collect {|a| [a.id, a.building]}, {prompt: "-Select Battery-"}, {class: 'form-control'}) %>
                                     </div>
                                 </div>
 								<div class="column-class">
                                 	<div class="col-md-4">
                                         <%= form.label :column %>
-                                        <%= form.select(:column, Column.all.collect {|o| [o.id, o.battery_id]}, {prompt: "-Select Column-"}, {class: 'form-control'}) %>
+                                        <%= form.select(:column, Column.all.collect {|o| [o.id, o.battery]}, {prompt: "-Select Column-"}, {class: 'form-control'}) %>
                                     </div>
                                 </div>
 								 <div class="elevator-class">
                                 <div class="col-md-4">
                                         <%= form.label :elevator %>
-                                        <%= form.select(:elevator, Elevator.all.collect {|l| [l.id, l.column_id ]}, {prompt: "-Select Elevator-"},  {class: 'form-control'}) %>
+                                        <%= form.select(:elevator, Elevator.all.collect {|l| [l.id, l.column ]}, {prompt: "-Select Elevator-"},  {class: 'form-control'}) %>
                                     </div>
                                 </div>
 								<div class="col-md-12">
@@ -258,6 +261,6 @@
                             		</div>
                         		</div>
 								 <div class="actions"> 
-                                    <%= form.submit class: 'btn btn-primary btn-lg', value: 'Submit Incident Report', :onclick => "alert('THIS WORKS')"%>
+                                    <%= form.submit class: 'btn btn-primary btn-lg', value: 'Submit Incident Report'%>
                                 </div>
 								 <% end %>

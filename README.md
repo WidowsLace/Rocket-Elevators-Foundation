@@ -1,37 +1,166 @@
-# Rocket_Elevators_API
-
-Dropbox:
-Fill in the contact form at the bottom of the index page, make sure to:
-Put in an email
-Remember that email
-Attach an image
-Head to the back office, create a new customer with the same email as the one from the contact form
-Head to the dropbox dashboard (https://www.dropbox.com/home/Apps/RocketElevatorsFiles) and show that a folder has been uploaded with the same name you put in the contact form and that the image you attached is in that folder
-
-Twilio:
-Go to the back office and edit an elevator so that its status is set to “Intervention”
-Pinky swear that Abdul received a text
+ Rocket-Elevators-Foundation
 
 
-As for freshdesk, we used this API to create support tickets for both questions and feature requests.
-go to ADMIN> controllers > leads
-Here, you can see that we are adding the request for the "contact us" form on the front page, giving the code the necessary values, and sending it over to our help desk.
-GO TO FRESHDESK.COM
-Heres where the tickets show up!
-GO TO ADMIN> controllers > quotes
-We are essentially doing the same thing here, only a little bit more information is added.
 
 
-For AWS polly, its about the same simplicity.
-GO TO ADMIN > CONTROLLERS > POLLY
-Here, we are setting the values, deleting the text and mp3 files, then generating new ones based on the values we passed in.
-Polly then synthesizes the tts, and outputs it to mp3.
-The mp3 is then shown in the admin page for employees to hear!
 
-For Google Maps you need to log into the Admin page and then select the Maps page 
-There you'll be able to see the addresses from our database plotted on a map as well as Information about each.
-Hovering over any of the plotted points will show their street address, company name, numbers of batteries, columns and elevators as well as the name of that addresses' technical contact.
 
-Slack:
-Go to the back office and edit an elevator status to anything other than the original status.
-A message is posted in the Rocket Elevators Slack elevator operations channel when the status is updated.
+
+
+
+
+
+# 𝓝𝓮𝔀 𝓜𝔂𝓼𝓺𝓵 𝓣𝓪𝓫𝓵𝓮
+
+The the tables use mysql and postgres databases and access must be added in the *database.yml* file. 
+
+The following was added to the config/database.yml file with the inclusion of the SecondBase gem:
+
+```bash
+secondbase:
+  development:
+    adapter: postgresql
+    database: postgres_dev
+  test:
+    adapter: postgresql
+    database: postgres_test
+```
+Go ahead and create the table and model by using this line of code in the command line then proceed to the next step
+```bash
+rails g model Interventions
+```
+```bash
+rails g migration AddColumnsToIntervention
+```
+After the creation, migration, and seeding of the database tables using the appropriate command:
+```bash
+rails db:create db:migrate db:seed
+```
+within a command line, the following line of code must be executed to extract the seeded data and inject it into the postgres data warehouse: 
+
+```bash
+rails runner lib/tasks/converter.rb
+```
+# 𝓕𝓻𝓮𝓼𝓱𝓭𝓮𝓼𝓴 𝓘𝓶𝓹𝓵𝓮𝓶𝓮𝓷𝓽𝓪𝓽𝓲𝓸𝓷
+To make a ticket with freshdesk, you have to make sure that you have an account with an API key.
+
+You can find the api key by going to top right> profile settings> Your API key
+
+After copying your API key, head over to [Developers.Freshdesk](https://developer.freshdesk.com/api/v1/#introduction), and login.
+
+Follow the documentation on how to impliment it into your code, and *make sure to have your API key private, as github WILL take it down.*
+
+Go into your leads controller inside your admin/models folder, and configure your code to match what is needed to be submitted as a support ticket/feature request.
+
+The gem needed for this API is
+	```gem "freshdesk"```
+
+Put the gem inside your gemfile, then run
+	
+``` bash
+bundle install
+```
+```bash
+#in your interventions controller
+api_key = ENV['FRESHDESK_API']
+        # Your freshdesk domain
+        # freshdesk_domain = 'rocketelevators.freshdesk.com/helpdesk/tickets'
+        freshdesk_domain = 'rocketelevators'
+        # It could be either your user name or api_key.
+        # api_key: ENV['FRESHDESK_API']
+        # If you have given api_key, then it should be x. If you have given user name, it should be password
+        if @intervention.report == nil
+        @intervention.report = "n/a"
+        end
+        if @intervention.result == nil
+        @intervention.result = "n/a"
+        end
+        if @intervention.status == nil
+        @intervention.status = "n/a"
+        end
+	.
+	.
+	.
+	etc...
+        json_payload = {
+            status: 2,
+            priority: 1,
+            "description": "the result of the intervention was " + @intervention.result blah blah blah blah here,
+        }.to_json
+        freshdesk_api_path = 'api/v2/tickets'
+        freshdesk_api_url  = "https://#{freshdesk_domain}.freshdesk.com/#{freshdesk_api_path}"
+        site = RestClient::Resource.new(freshdesk_api_url, api_key)
+```
+and thats all to it!
+
+
+
+
+# 𝓡𝓔𝓢𝓣 𝓐𝓟𝓘
+
+## Overview
+
+Create a web API project
+
+Add a model class and a database context
+
+Scaffold a controller with CRUD methods
+
+Configure routing, URL paths, and return values
+
+Call the web API with Postman
+
+## Installation
+
+Use the [heroku](https://dashboard.heroku.com/apps) platform to deploy.
+
+Since we used c# as our language, you will have to add the c# buildpack. 
+
+```bash
+heroku buildpacks:set jincod/dotnetcore
+```
+
+## Usage
+
+Click on the links to view and change the statuses.
+
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/battery/1/status) 
+ the current status of a specific Battery
+
+[PUT](https://rocket-elevators-rest-2022.herokuapp.com/api/battery/1)
+ the status of a specific Battery
+
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/column/1/status)
+the current status of a specific Column
+
+[PUT](https://rocket-elevators-rest-2022.herokuapp.com/api/column/1)
+ the status of a specific Column
+
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/1/status)
+the current status of a specific Elevator
+
+[PUT](https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/1)
+the status of a specific Elevator
+
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/elevator/broken)
+a list of Elevators that are not in operation at the time of the request
+
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/building/interventions)
+a list of Buildings that contain at least one battery, column or elevator requiring intervention
+
+[GET](https://rocket-elevators-rest-2022.herokuapp.com/api/lead/notcustomer)
+ a list of Leads created in the last 30 days who have not yet become customers.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## Documentation 
+We used the following websites to build this project:
+
+[microsoft web api docs](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.1&tabs=visual-studio-code)
+
+[heroku docs](https://devcenter.heroku.com/categories/reference)
+
+[Microsoft LINQ Docs](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries)
