@@ -88,22 +88,22 @@
 											CONTACT
 										</a>
 									</li>
+									<% if user_signed_in? %>
+										<li><!-- BACK OFFICE -->
+											<a href="/intervention" id="contact-nav">
+												INTERVENTIONS
+											</a>
+										</li>
+									<% end %>
 									<li><!-- LOGIN -->
 										<a href=<%= new_user_session_path %> id="contact-nav">
 											LOGIN
 										</a>
 									</li>
-                                    <% if user_signed_in? %>
-										<li><!-- BACK OFFICE -->
-											<a href="/intervention" id="contact-nav">
-												Interventions
-											</a>
-										</li>
-									<% end %>
 									<% if user_signed_in? %>
 										<li><!-- BACK OFFICE -->
 											<a href="/admin" id="contact-nav">
-												Back Office
+												BACK OFFICE
 											</a>
 										</li>
 									<% end %>

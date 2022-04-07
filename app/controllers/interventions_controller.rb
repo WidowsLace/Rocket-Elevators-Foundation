@@ -86,6 +86,6 @@ class InterventionsController < InheritedResources::Base
         puts "Response Code: #{exception.response.code} Response Body: #{exception.response.body} "
       end
 
-      redirect_to('/intervention')
+      redirect_to('/intervention#create')
     end
 end
