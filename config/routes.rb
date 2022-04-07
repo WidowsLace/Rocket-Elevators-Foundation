@@ -15,7 +15,13 @@ Rails.application.routes.draw do
 
   post '/intervention', to: 'interventions#create'
 
+
   post '/lead', to: 'leads#create'
+
+  get 'get_buildings_by_customer/:customer_id', to: 'buildings#get_buildings_by_customer'
+  get 'get_batteries_by_building/:building_id', to: 'batteries#get_batteries_by_building'
+  get 'get_columns_by_battery/:battery_id', to: 'columns#get_columns_by_battery'
+  get 'get_elevators_by_column/:column_id', to: 'elevators#get_elevators_by_column'
 
   #route to home page, commercial,residential, and quote
   root to: 'pages#index'
@@ -29,6 +35,7 @@ Rails.application.routes.draw do
   # get 'polly#speak' to: redirect('/polly')
   get '/login', to: 'pages#index'
   get '/intervention', to: 'pages#intervention'
+
   get '/(*url)', to: redirect('/404')
 
 

@@ -222,129 +222,42 @@
                 							<%= form.label :Author %>
                 							<%# <%= form.text_field :author, value:current_user.employee %> 
             							<%# </div> %>
-                                        <div class="form-group" id="Customer">
-                                            <%= form.label :Customer %>
-                                            <%= form.select(:customer, Customer.all.collect {|customer| [customer.company_name, customer.id ]}.sort_by(&:first), {prompt: "Customer"}, {class: 'form-control'}) %>
-                                        </div>
-                                         <div class="form-group" id="building">
-                                            <%= form.label :Building %>
-                                            <%= form.select(:building, Building.all.collect {|building| [building.id, building.customer_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
-                                        </div>
-
-                                        <div class="form-group" id="battery">
-                                            <%= form.label :Battery %>
-                                            <%= form.select(:battery, Battery.all.collect {|battery| [battery.id, battery.building_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
-                                        </div>
-
-                                        <div class="form-group" id="column">
-                                            <%= form.label :Column %>
-                                            <%= form.select(:column, Column.all.collect {|column| [column.id, column.battery_id ]}, {prompt: "none"}, {class: 'form-control'}) %>
-                                        </div>
-
-                                        <div class="form-group" id="elevator">
-                                            <%= form.label :Elevator %>
-                                            <%= form.select(:elevator, Elevator.all.collect {|elevator| [elevator.id, elevator.serial_number ]}, {prompt: "Elevator"}, {class: 'form-control'}) %>
-                                        </div>
-
-                                        <div class="form-group" id="employee">
-                                            <%= form.label :Employee %>
-                                            <%= form.select(:employee, Employee.all.collect {|employee| [employee.first_name + " " + employee.last_name, employee.id ]}, {prompt: "none"}, {class: 'form-control'}) %>
-                                        </div>
-
-                                        <div class="field" style="display: none;">
-                                            <%= form.label :created_at %>
-                                            <%= form.text_field :created_at, value:nil %>
-                                        </div>
-
-                                        <div class="field" style="display: none;">
-                                            <%= form.label :updated_at %>
-                                            <%= form.text_field :updated_at, value:nil %>
-                                        </div>
-
-                                        <div class="field" style="display: none;">
-                                            <%= form.label :result %>
-                                            <%= form.text_field :result, value:"Incomplete" %>
-                                        </div>
-
-                                        <div class="field">
-                                            <%= form.label(:report, "Description") %>
-                                            <%= form.text_area :report, class:'form-control', rows:'6', :required => true %>
-                                        </div>
-
-                                        <div class="field" style="display: none;">
-                                            <%= form.label :status %>
-                                            <%= form.text_field :status, value:"Pending"%>
-                                        </div>
-
-                                        <div class="actions">
-                                            <button type="Submit" value="Submit" class="btn btn-primary" ><i class="fa fa-check"></i> SEND MESSAGE</button>
-                                        </div>
+ 								<div class="row">
+                                	<div class="col-md-4">
+                                        <%= form.label :customer %>
+                                        <%= form.select(:customer, Customer.all.collect {|customer| [customer.company_name, customer.id]}.sort_by(&:first), {prompt: "-Select Customer-"}, {class: 'form-control'}) %>
                                     </div>
-
                                 </div>
-                                </section>
-                            <% end %>
-
-								<!-- Alert Success -->
-								<div id="alert_success" class="alert alert-success mb-30">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<strong>Thank You!</strong> Your request successfully sent!
-								</div><!-- /Alert Success -->
-
-
-								<!-- Alert Failed -->
-								<div id="alert_failed" class="alert alert-danger mb-30">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<strong>[SMTP] Error!</strong> Internal server error!
-								</div><!-- /Alert Failed -->
-
-
-								<!-- Alert Mandatory -->
-								<div id="alert_mandatory" class="alert alert-danger mb-30">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<strong>Sorry!</strong> You need to complete all mandatory (*) fields!
-								</div><!-- /Alert Mandatory -->
-
-
-<%# 
-								
-		<script src="<%= asset_path 'intervention' %>
-
-					<%# var subjectObject = {
-			"Front-end": {
-				"HTML": ["Links", "Images", "Tables", "Lists"],
-				"CSS": ["Borders", "Margins", "Backgrounds", "Float"],
-				"JavaScript": ["Variables", "Operators", "Functions", "Conditions"]
-			},
-
-			}
-			window.onload = function() {
-			var customerSel = document.getElementById("customer");
-			var buildingSel = document.getElementById("building");
-			var batterySel = document.getElementById("battery");
-			var columnSel = document.getElementById("column");
-			var elevatorSel = document.getElementById("elevator");
-			for (var x in subjectObject) {
-				customerSel.options[customerSel.options.length] = new Option(x, x);
-			}
-			customerSel.onchange = function() {
-				//empty Chapters- and Topics- dropdowns
-				batterySel.length = 1;
-				buildingSel.length = 1;
-				//display correct values
-				for (var y in subjectObject[this.value]) {
-				buildingSel.options[buildingSel.options.length] = new Option(y, y);
-				}
-			}
-			buildingSel.onchange = function() {
-				//empty Chapters dropdown
-				batterySel.length = 1;
-				//display correct values
-				var z = subjectObject[customerSel.value][this.value];
-				for (var i = 0; i < z.length; i++) {
-				batterySel.options[batterySel.options.length] = new Option(z[i], z[i]);
-				}
-			}
-			
-			} %>
-			<%# </script> %> 
+ 								<div class="building-class">
+                                <div class="col-md-4">
+                                        <%= form.label :building %>
+                                        <%= form.select(:building, Building.all.collect {|t| [t.id, t.customer_id ]}, {prompt: "id"},  {class: 'form-control'}) %>
+                                    </div>
+                                </div>
+								<div class="battery-class">
+                                	<div class="col-md-4">
+                                        <%= form.label :battery %>
+                                        <%= form.select(:battery, Battery.all.collect {|a| [a.id, a.building_id]}, {prompt: "-Select Battery-"}, {class: 'form-control'}) %>
+                                    </div>
+                                </div>
+								<div class="column-class">
+                                	<div class="col-md-4">
+                                        <%= form.label :column %>
+                                        <%= form.select(:column, Column.all.collect {|o| [o.id, o.battery_id]}, {prompt: "-Select Column-"}, {class: 'form-control'}) %>
+                                    </div>
+                                </div>
+								 <div class="elevator-class">
+                                <div class="col-md-4">
+                                        <%= form.label :elevator %>
+                                        <%= form.select(:elevator, Elevator.all.collect {|l| [l.id, l.column_id ]}, {prompt: "-Select Elevator-"},  {class: 'form-control'}) %>
+                                    </div>
+                                </div>
+								<div class="col-md-12">
+                                		<%= form.label :description %>
+                                		<%= form.text_area :report, class: 'form-control', rows: '6' %>
+                            		</div>
+                        		</div>
+								 <div class="actions"> 
+                                    <%= form.submit class: 'btn btn-primary btn-lg', value: 'Submit Incident Report', :onclick => "alert('THIS WORKS')"%>
+                                </div>
+								 <% end %>

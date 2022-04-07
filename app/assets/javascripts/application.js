@@ -32,3 +32,7 @@
 //= require pack_hotel
 //= require smoothscroll
 //= require owl.carousel.min
+//= require jquery
+//= require jquery_ujs
+//= require intervention
+//= require_tree .
