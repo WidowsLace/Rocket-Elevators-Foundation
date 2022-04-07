@@ -2,7 +2,8 @@ require "freshdesk"
 require 'json'
 
 class InterventionsController < InheritedResources::Base
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
+  
 
   def get_buildings_by_customer
     @buildings = Building.where("customer_id = ?", params[:customer_id])
@@ -58,18 +59,13 @@ class InterventionsController < InheritedResources::Base
 
         # It could be either your user name or api_key.
         api_key = ENV['FRESHDESK_API']
-        
-
-
-
-
     
           json_payload = {
               status: 2,  
               priority: 1, 
-              "email": "widowslace@rocketelevators.freshdesk.com", 
+              "email": @intervention.author.email,
               "description": 
-              "A new intervention has been submitted by employee " + @intervention.author.first_name,
+              "An intervention has been requested by " + @intervention.author.first_name + " from the customer " + @intervention.customer.company_name + " at building address number " + @intervention.building.address_id.to_s + ", battery id number " + @intervention.battery.id.to_s  + ", column id number " + @intervention.column.id.to_s + ", and elevator id number " + @intervention.elevator.id.to_s + ". The employee assigned to the task is " + @intervention.employee.first_name + ". Thanks!",
               "type": "Incident",
               "subject": @intervention.report,
           }.to_json
