@@ -225,14 +225,14 @@ info_key_array = ["Type", "Construction Year", "Number of Elevators Inside", "Ma
 # info_value_array = [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ]
 
 # --------generate random building details
-# (Building.count * 3).times do  
-#     x = rand(5)
-#     BuildingDetail.create!(        
-#         building_id:    Faker::Number.between(from: Building.first.id, to: (Building.first.id+Building.count - 1)),
-#         info_key:   info_key_array[x],
-#         value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
-#     )
-# end
+(Building.count * 3).times do  
+    x = rand(5)
+    BuildingDetail.create!(        
+        building_id:    Faker::Number.between(from: Building.first.id, to: (Building.first.id+Building.count - 1)),
+        info_key:   info_key_array[x],
+        value:  [["Residential", "Commercial","Corporate", "Hybrid"].sample, Faker::Date.between(from: '1954-01-01', to: '2022-03-16'), Faker::Number.between(from: 1, to: 12), Faker::Number.between(from: 1, to: 300), Faker::Date.between(from: '1954-01-01', to: '2022-03-16') ][x],
+    )
+end
 
 puts "-- ___-- Building Details Table Populated with #{BuildingDetail.count} records -- ___--"
 
