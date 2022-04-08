@@ -1,4 +1,7 @@
-
+$("#buildings").hide();
+$("#columns").hide();
+$("#elevators").hide();
+$("#batteries").hide();
 $(function() {
    
 //get building via customer
