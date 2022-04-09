@@ -36,24 +36,31 @@ class InterventionsController < InheritedResources::Base
 
 
     def create
-      @intervention = Intervention.create!(
-          author: Employee.find(current_user.id),
-          customer: Customer.find(params[:customer]),
+      # @intervention = Intervention.create!(
+      #     author: current_user.employee,
+      #     customer: Customer.find(params[:customer]),
+      #     building: Building.find(params[:building]),
+      #     battery: Battery.find(params[:battery]),
+      #     column: Column.find(params[:column]),
+      #     elevator: Elevator.find(params[:elevator]),
+      #     employee: Employee.find(params[:employee]),
+      #     result: params[:result],
+      #     report: params[:report],
+      #     status: params[:status],
+      # )
 
-                    
-          building: Building.find(params[:building]),
-          battery: Battery.find(params[:battery]),
-          column: Column.find(params[:column]),
-          elevator: Elevator.find(params[:elevator]),
-          employee: Employee.find(params[:employee]),
-          # description: params[:description],
-          # startdate: params[:start_date],
-          # enddate: params[:end_date],
-          # time_of_intervention: params[:time_of_intervention],
-          result: params[:result],
-          report: params[:report],
-          status: params[:status],
-      )
+      @intervention = Intervention.create!(
+            author: current_user.employee,
+            result: params[:result],
+            report: params[:report],
+            status: params[:status],
+            customer_id: params[:customer],
+            building_id: params[:building],
+            battery_id: params[:battery],
+            column_id: params[:column],
+            elevator_id: params[:elevator],
+            employee_id: params[:employee]
+        )
     
       freshdesk_domain = 'rocketelevators'
 
@@ -63,7 +70,7 @@ class InterventionsController < InheritedResources::Base
           json_payload = {
               status: 2,  
               priority: 1, 
-              "email": @intervention.author.email,
+              "email": Employee.find(@intervention.author).email,
               "description": 
               "An intervention has been requested by " + @intervention.author.first_name + " from the customer " + @intervention.customer.company_name + " at building address number " + @intervention.building.address_id.to_s + ", battery id number " + @intervention.battery.id.to_s  + ", column id number " + @intervention.column.id.to_s + ", and elevator id number " + @intervention.elevator.id.to_s + ". The employee assigned to the task is " + @intervention.employee.first_name + ". Thanks!",
               "type": "Incident",
