@@ -6,7 +6,4 @@ class Intervention < ApplicationRecord
     belongs_to :battery, optional: true
     belongs_to :column, optional: true
     belongs_to :elevator, optional: true
-    
-    devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 end 
