@@ -1,6 +1,7 @@
 require 'aws-sdk'  # In v2: require 'aws-sdk'
 
 class PollyController < ActionController::Base
+    # skip_before_action :verify_authenticity_token, raise: false
     # helper_method :speak
     def speak
 #  binding.pry

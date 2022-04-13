@@ -95,7 +95,14 @@
 											</a>
 										</li>
 									<% end %>
-									<li><!-- LOGIN -->
+									<li><!-- LOGIN -->	
+									<% if user_signed_in? %>								
+										<a href=<%= destroy_user_session_path %> id="contact-nav">
+											LOGOUT
+										</a>
+									</li>
+									<%end%>
+									<li><!-- LOGIN -->									
 										<a href=<%= new_user_session_path %> id="contact-nav">
 											LOGIN
 										</a>

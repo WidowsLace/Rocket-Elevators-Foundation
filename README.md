@@ -151,6 +151,15 @@ a list of Buildings that contain at least one battery, column or elevator requir
 [GET](https://rocket-elevators-rest-2022.herokuapp.com/api/lead/notcustomer)
  a list of Leads created in the last 30 days who have not yet become customers.
 
+[GET](https://rocket-elevators-2022.herokuapp.com/api/intervention/)
+ a list of Interventions created
+
+[PUT](https://rocket-elevators-2022.herokuapp.com/api/interventions/InProgress)
+  the status of an intervention to inprogress and change the date and time
+
+[PUT](https://rocket-elevators-2022.herokuapp.com/api/interventions/Completed)
+  the status of an intervention to completed and changed the date and time
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

@@ -7,7 +7,7 @@ require 'json'
 
 
 class LeadsController < ApplicationController
-    skip_before_action :verify_authenticity_token
+    # skip_before_action :verify_authenticity_token, raise: false
     invisible_captcha only: :index, honeypot: :subtitle
 
     def create

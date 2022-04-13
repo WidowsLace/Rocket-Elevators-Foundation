@@ -2,9 +2,7 @@ require "freshdesk"
 require 'json'
 
 class InterventionsController < InheritedResources::Base
-  before_action :authenticate_user!
-  
-
+  # skip_before_action :verify_authenticity_token, raise: false
   def get_buildings_by_customer
     @buildings = Building.where("customer_id = ?", params[:customer_id])
     respond_to do |format|
@@ -93,6 +91,6 @@ class InterventionsController < InheritedResources::Base
         puts "Response Code: #{exception.response.code} Response Body: #{exception.response.body} "
       end
 
-      redirect_to('/intervention#create')
+      redirect_to('/intervention')
     end
 end
