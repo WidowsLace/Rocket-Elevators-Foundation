@@ -61,7 +61,7 @@
 									CONTACT
 								</a>
 							</li>
-							<% if user_signed_in? %>
+							<% if user_signed_in? && current_user.employee%>
 							<li><!-- BACK OFFICE -->
 								<a href="/intervention" id="contact-nav">
 									INTERVENTIONS
@@ -80,7 +80,7 @@
 									LOGIN
 								</a>
 							</li>
-							<% if user_signed_in? %>
+							<% if user_signed_in? && current_user.employee%>
 								<li><!-- BACK OFFICE -->
 									<a href="/admin" id="contact-nav">
 										BACK OFFICE
@@ -1234,10 +1234,10 @@
 									</div>
 							</div>
 							<div class="row">
-																		<div class="col-md-8">
-																				<label for="contact:message">Project Description *</label>
-																				<textarea required maxlength="10000" rows="8" class="form-control" name="project_description" id="project_description"></textarea>
-																		</div>
+									<div class="col-md-8">
+										<label for="contact:message">Project Description *</label>
+											<textarea required maxlength="10000" rows="8" class="form-control" name="project_description" id="project_description"></textarea>
+										</div>
 									<div class="col-md-4">
 										<label for="contact_department">Department *</label>
 										<select class="form-control pointer" name="department" id="department">

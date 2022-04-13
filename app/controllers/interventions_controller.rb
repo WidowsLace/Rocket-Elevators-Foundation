@@ -69,8 +69,8 @@ class InterventionsController < InheritedResources::Base
               status: 2,  
               priority: 1, 
               "email": @intervention.author.email,
-              "description": 
-              "An intervention has been requested by " + @intervention.author.first_name + " from the customer " + @intervention.customer.company_name + " at building address number " + @intervention.building.address_id.to_s + ", battery id number " + @intervention.battery.id.to_s  + ", column id number " + @intervention.column.id.to_s + ", and elevator id number " + @intervention.elevator.id.to_s + ". The employee assigned to the task is " + @intervention.employee.first_name + ". Thanks!",
+              # "description": 
+              # "An intervention has been requested by " + @intervention.author.first_name + " from the customer " + @intervention.customer.company_name + " at building address number " + @intervention.building.address_id.to_s + ", battery id number " + @intervention.battery.id.to_s  + ", column id number " + @intervention.column.id.to_s + ", and elevator id number " + @intervention.elevator.id.to_s + ". The employee assigned to the task is " + @intervention.employee.first_name + ". Thanks!",
               "type": "Incident",
               "subject": @intervention.report,
           }.to_json
@@ -91,6 +91,6 @@ class InterventionsController < InheritedResources::Base
         puts "Response Code: #{exception.response.code} Response Body: #{exception.response.body} "
       end
 
-      redirect_to('/intervention')
+      render :js => "window.location = '/intervention'"
     end
 end

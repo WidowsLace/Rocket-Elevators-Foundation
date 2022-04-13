@@ -238,25 +238,25 @@
                                         <%= form.select(:customer, Customer.all.collect {|customer| [customer.company_name, customer.id]}.sort_by(&:first), {prompt: "-Select Customer-"}, {class: 'form-control'}) %>
                                     </div>
                                 </div>
- 								<div class="building-class">
+ 								<div class="building-class" id="building-class">
                                 <div class="col-md-4">
                                         <%= form.label :building %>
                                         <%= form.select(:building, Building.all.collect {|t| [t.id, t.customer ]}, {prompt: "id"},  {class: 'form-control'}) %>
                                     </div>
                                 </div>
-								<div class="battery-class">
+								<div class="battery-class" id="battery-class">
                                 	<div class="col-md-4">
                                         <%= form.label :battery %>
                                         <%= form.select(:battery, Battery.all.collect {|a| [a.id, a.building]}, {prompt: "-Select Battery-"}, {class: 'form-control'}) %>
                                     </div>
                                 </div>
-								<div class="column-class">
+								<div class="column-class" id="column-class">
                                 	<div class="col-md-4">
                                         <%= form.label :column %>
                                         <%= form.select(:column, Column.all.collect {|o| [o.id, o.battery]}, {prompt: "-Select Column-"}, {class: 'form-control'}) %>
                                     </div>
                                 </div>
-								 <div class="elevator-class">
+								 <div class="elevator-class" id="elevator-class">
                                 <div class="col-md-4">
                                         <%= form.label :elevator %>
                                         <%= form.select(:elevator, Elevator.all.collect {|l| [l.id, l.column ]}, {prompt: "-Select Elevator-"},  {class: 'form-control'}) %>
@@ -271,3 +271,5 @@
                                     <%= form.submit class: 'btn btn-primary btn-lg', value: 'Submit Incident Report'%>
                                 </div>
 								 <% end %>
+
+
