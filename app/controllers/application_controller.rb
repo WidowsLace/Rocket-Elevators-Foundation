@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery prepend: true, with: :exception
+  # protect_from_forgery prepend: true, with: :exception
   # skip_before_action :verify_authenticity_token, raise: false
   rescue_from CanCan::AccessDenied do
         flash[:error] = 'Access denied!'
